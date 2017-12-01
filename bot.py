@@ -1,10 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python2.7
 # coding: utf8
 
 import telebot
 import subprocess
 
-fradio_chat_id = 0
 with open("data/fiztehradio.chatid", "r") as file:
 	fradio_chat_id = file.read().strip()
 
@@ -13,6 +12,7 @@ with open("data/phystechbot.token", "r") as file:
 	bot = telebot.TeleBot(token)
 
 print("Started bot with token /"+token+"/")
+print("FIZTEH RADIO token is /"+fradio_chat_id+"/")
 
 path_to_photo = "/Users/fiztehradio/Camera/photo/current.png"
 sooq_sticker1 = "CAADAgADIgAD1vl9CIhY2t5j3nJoAg"
