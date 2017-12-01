@@ -25,9 +25,9 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['photo']) # func=lambda m: m == "photo")
 def send_photo(message):
-	# if fradio_chat_id != message.chat.id:
-	# 	bot.send_message(message.chat.id, u"Вы не в чате команды Физтех.Радио. Сори :(")
-	# 	return
+	if fizteh_chat_only and fradio_chat_id != message.chat.id:
+		bot.send_message(message.chat.id, u"Вы не в чате команды Физтех.Радио. Сори :(")
+		return
 	if capture.take_photo(path_to_photo):
 		with open(path_to_photo, 'rb') as photo:
 			bot.send_photo(message.chat.id, photo)

@@ -1,3 +1,6 @@
+# flags
+fizteh_chat_only = False
+
 # stickers
 sooq_sticker1 = "CAADAgADIgAD1vl9CIhY2t5j3nJoAg"
 sooq_sticker2 = "CAADAgADIwAD1vl9CF9PaiN4TXvCAg"
