@@ -13,10 +13,10 @@ class Gopro(object):
             print("Connection Failed")
         self.ready = self.camera.status["ok"]
 
-    def take_photo(self):
+    def take_photo(self, path):
         self.camera.photo()
         self.camera.capture()
-        self.save_photo()
+        self.save_photo(path)
         return True
 
     def save_photo(self, path):

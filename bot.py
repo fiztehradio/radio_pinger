@@ -13,29 +13,29 @@ fradio_chat_id = None
 token = None
 capture = None
 
-print("Started bot with token /"+token+"/")
+
+with open(fizteh_chat_id_path, "r") as file:
+    fradio_chat_id = file.read().strip()
+
 print("FIZTEH RADIO token is /"+fradio_chat_id+"/")
 
-def prepare():
-    with open(fizteh_chat_id_path, "r") as file:
-        fradio_chat_id = file.read().strip()
+with open(bot_token, "r") as f:
+    token = f.read().strip()
 
-    with open(bot_token, "r") as f:
-        token = f.read().strip()
+bot = telebot.TeleBot(token)
+print("Started bot with token /" + token + "/")
 
-    bot = telebot.TeleBot(token)
-    print("Started bot with token /" + token + "/")
+capture = Gopro()
+if not capture.ready:
+    print("Can't init Gopro")
 
-    capture = Gopro()
-    if not capture.ready:
-        print("Can't init Gopro")
 
 
 def find_sooq(s):
     if s[:2] == "so":
         if s[-1] == "q":
             return True
-        if s[-2:] = "qa":
+        if s[-2:] == "qa":
             return True
     return False
 
@@ -62,11 +62,9 @@ def send_sooqa(message):
     bot.send_sticker(message.chat.id, sooq_sticker1)
 
 
-@bot.message_handler(func=lambda m: find_sooq(m)):
-def send_sooqa(message):
-    bot.send_sticker(message.chat.id, sooq_sticker2)
+# @bot.message_handler(func=lambda m: find_sooq(m))
+# def send_sooqa(message):
+#     bot.send_sticker(message.chat.id, sooq_sticker2)
 
 
-if __name__ == "__main__":
-    prepare()
-    bot.polling()
+bot.polling()
