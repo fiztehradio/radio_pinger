@@ -1,28 +1,23 @@
+#!/usr/bin/python
+# coding: utf8
+
 from gopro.gopro import GoPro
 
-camera = GoPro.GoPro()
+class Gopro(object):
+    def __init__(self):
+        self.connect()
 
-print("Status")
-print(camera.status)
+    def connect(self):
+        self.camera = GoPro.GoPro()
+        if not self.camera.status["ok"]:
+            print("Connection Failed")
+        self.ready = self.camera.status["ok"]
 
-# camera.poweron()
+    def take_photo(self):
+        self.camera.photo()
+        self.camera.capture()
+        self.save_photo()
+        return True
 
-camera.photo()
-camera.capture()
-
-# camera.sleep()
-
-from pymongo import MongoClient
-
-client = MongoClient()
-
-for item in client.gopro.photos.find({},{'_id':0}):
-    print("item", item)
-    query = {'dt':
-        {'$gt': item['dt']}
-    }
-    print("query", query)
-    search = client.gopro.gpx.find_one(query, {'_id':0})
-    print("search", search)
-    print("update", item.update(search))
-    print("client", client.gopro.process.save(item))
+    def save_photo(self, path):
+        self.camera.media[-1].save(path)
