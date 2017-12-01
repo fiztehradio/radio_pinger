@@ -27,13 +27,15 @@ def prepare():
     if not capture.ready:
         print("Can't init Gopro")
 
+
 def find_sooq(s):
-	if s[:2] == "so":
-		if s[-1] == "q":
-			return True
-		if s[-2:] = "qa":
-			return True
-	return False
+    if s[:2] == "so":
+        if s[-1] == "q":
+            return True
+        if s[-2:] = "qa":
+            return True
+    return False
+
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -51,12 +53,13 @@ def send_photo(message):
             bot.send_photo(message.chat.id, photo)
 
 
-@bot.message_handler(commands=['sooq'])  # func=lambda m: m == "photo")
+# func=lambda m: m == "photo")
+@bot.message_handler(commands=['sooq', 'sooqa', 'soooq'])
 def send_sooqa(message):
     bot.send_sticker(message.chat.id, sooq_sticker1)
 
 
-@bot.message_handler(commands=['sooqa'])  # func=lambda m: m == "photo")
+@bot.message_handler(func=lambda m: find_sooq(m)):
 def send_sooqa(message):
     bot.send_sticker(message.chat.id, sooq_sticker2)
 
