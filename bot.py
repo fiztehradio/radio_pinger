@@ -4,32 +4,20 @@
 import telebot
 import subprocess
 
-fradio_chat_id = 0
-with open("data/fiztehradio.chatid", "r") as file:
+from consts import *
+from capture import Gopro
+
+with open(fizteh_chat_id_path, "r") as file:
 	fradio_chat_id = file.read().strip()
 
-with open("data/phystechbot.token", "r") as file:
+with open(bot_token, "r") as file:
 	token = file.read().strip()
 	bot = telebot.TeleBot(token)
 
 print("Started bot with token /"+token+"/")
-
-path_to_photo = "/Users/fiztehradio/Camera/photo/current.png"
-sooq_sticker1 = "CAADAgADIgAD1vl9CIhY2t5j3nJoAg"
-sooq_sticker2 = "CAADAgADIwAD1vl9CF9PaiN4TXvCAg"
-delay = 0
-
-def take_photo(wait=0):
-	command = "imagesnap %s" % path_to_photo
-	if wait:
-		command += " -w %f" % wait
-	proc = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-	output, error = proc.communicate()
-	if error is not None:
-		print (error)
-		return False
-	return True
-
+capture = Gopro()
+if not capture.ready:
+	print("Can't init Gopro")
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -40,7 +28,7 @@ def send_photo(message):
 	if fradio_chat_id != message.chat.id:
 		bot.send_message(message.chat.id, u"Вы не в чате команды Физтех.Радио. Сори :(")
 		return
-	if take_photo(wait=delay):
+	if capture.take_photo(path_to_photo):
 		with open(path_to_photo, 'rb') as photo:
 			bot.send_photo(message.chat.id, photo)
 
