@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# coding: utf8
+
 import telebot
 import subprocess
 
@@ -35,7 +38,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['photo']) # func=lambda m: m == "photo")
 def send_photo(message):
 	if fradio_chat_id != message.chat.id:
-		bot.send_message(message.chat.id, "Вы не в чате команды Физтех.Радио. Сори :(")
+		bot.send_message(message.chat.id, u"Вы не в чате команды Физтех.Радио. Сори :(")
 		return
 	if take_photo(wait=delay):
 		with open(path_to_photo, 'rb') as photo:
