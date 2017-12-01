@@ -1,3 +1,4 @@
 */*.token
 photo/*.*
 **/.DS_Store
+*.pyc
