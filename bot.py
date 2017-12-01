@@ -1,7 +1,16 @@
 import telebot
 import subprocess
 
-fradio_chat_id = -1001120092433
+fradio_chat_id = 0
+with open("data/fiztehradio.chatid", "r") as file:
+	fradio_chat_id = file.read().strip()
+
+with open("data/phystechbot.token", "r") as file:
+	token = file.read().strip()
+	bot = telebot.TeleBot(token)
+
+print("Started bot with token /"+token+"/")
+
 path_to_photo = "/Users/fiztehradio/Camera/rubka.png"
 sooq_sticker1 = "CAADAgADIgAD1vl9CIhY2t5j3nJoAg"
 sooq_sticker2 = "CAADAgADIwAD1vl9CF9PaiN4TXvCAg"
@@ -18,11 +27,6 @@ def take_photo(wait=0):
 		return False
 	return True
 
-with open("phystechbot.token", "r") as file:
-	token = file.read().strip()
-	bot = telebot.TeleBot(token)
-
-print("Started bot with token /"+token+"/")
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
