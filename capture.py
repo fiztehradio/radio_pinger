@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# coding: utf8
+
 from gopro.gopro import GoPro
 
 class Gopro(object):
