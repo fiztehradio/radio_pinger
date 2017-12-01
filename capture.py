@@ -36,7 +36,7 @@ class Gopro(object):
             return
         for m in new_imgs:
             m.save(path + "capture.jpg")
-            m.save(path + m.basename)
+            m.save(path + "backup/" + m.basename)
             print("path", path)
 
         self.state = set([m.basename for m in self.camera.media])
