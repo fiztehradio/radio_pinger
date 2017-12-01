@@ -14,7 +14,7 @@ with open("data/phystechbot.token", "r") as file:
 
 print("Started bot with token /"+token+"/")
 
-path_to_photo = "/Users/fiztehradio/Camera/rubka.png"
+path_to_photo = "/Users/fiztehradio/Camera/photo/current.png"
 sooq_sticker1 = "CAADAgADIgAD1vl9CIhY2t5j3nJoAg"
 sooq_sticker2 = "CAADAgADIwAD1vl9CF9PaiN4TXvCAg"
 delay = 0
