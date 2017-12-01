@@ -7,13 +7,20 @@ import subprocess
 from consts import *
 from capture import Gopro
 
-with open(fizteh_chat_id_path, "r") as file:
-	fradio_chat_id = file.read().strip()
+bot = None
+fradio_chat_id = None
+token = None
+capture = None
 
-with open(bot_token, "r") as file:
-	token = file.read().strip()
-	bot = telebot.TeleBot(token)
+def prepare():
+	with open(fizteh_chat_id_path, "r") as file:
+		fradio_chat_id = file.read().strip()
 
+	with open(bot_token, "r") as file:
+		token = file.read().strip()
+		bot = telebot.TeleBot(token)
+
+prepare()
 print("Started bot with token /"+token+"/")
 capture = Gopro()
 if not capture.ready:
