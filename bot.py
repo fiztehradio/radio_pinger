@@ -27,6 +27,13 @@ def prepare():
     if not capture.ready:
         print("Can't init Gopro")
 
+def find_sooq(s):
+	if s[:2] == "so":
+		if s[-1] == "q":
+			return True
+		if s[-2:] = "qa":
+			return True
+	return False
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
