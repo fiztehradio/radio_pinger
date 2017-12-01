@@ -30,41 +30,27 @@ if not capture.ready:
     print("Can't init Gopro")
 
 
-
-def find_sooq(s):
-    if s[:2] == "so":
-        if s[-1] == "q":
-            return True
-        if s[-2:] == "qa":
-            return True
-    return False
-
-
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     bot.reply_to(message, "Howdy, how are you doing?")
 
 
-@bot.message_handler(commands=['photo'])  # func=lambda m: m == "photo")
+@bot.message_handler(commands=['photo'])
 def send_photo(message):
     if fizteh_chat_only and fradio_chat_id != message.chat.id:
         bot.send_message(
             message.chat.id, u"Вы не в чате команды Физтех.Радио. Сори :(")
         return
-    if capture.take_photo(path_to_photo):
-        with open(path_to_photo, 'rb') as photo:
+    path = capture.take_photo(path_to_photo)
+    if path:
+        print("path_to_photo", path)
+        with open(path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
 
 
-# func=lambda m: m == "photo")
 @bot.message_handler(commands=['sooq', 'sooqa', 'soooq'])
 def send_sooqa(message):
     bot.send_sticker(message.chat.id, sooq_sticker1)
-
-
-# @bot.message_handler(func=lambda m: find_sooq(m))
-# def send_sooqa(message):
-#     bot.send_sticker(message.chat.id, sooq_sticker2)
 
 
 bot.polling()

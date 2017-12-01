@@ -38,7 +38,8 @@ class Media(object):
     @property
     def img(self):
         self.download()
-        return Image.open(StringIO(self.content))
+        img = Image.open(StringIO(self.content)).transpose(Image.FLIP_TOP_BOTTOM).transpose(Image.FLIP_LEFT_RIGHT)
+        return img
 
     @property
     def size(self):
