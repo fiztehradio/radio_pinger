@@ -8,4 +8,9 @@ sooq_sticker2 = "CAADAgADIwAD1vl9CF9PaiN4TXvCAg"
 # files
 fizteh_chat_id_path =  "data/fiztehradio.chatid"
 bot_token = "data/phystechbot.token"
-path_to_photo = "/Users/fiztehradio/Documents/server/fiztehbot/photo/"
+
+# urls
+stream_status_url = "http://radio.mipt.ru:8410/status-json.xsl"
+
+# strings
+dead_stream_name = "Radiologic - Broadcast"
