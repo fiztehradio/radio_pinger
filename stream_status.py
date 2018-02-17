@@ -15,7 +15,11 @@ def check_stream():
     if status is None:
         return False
 
-    current_stream_name = status["icestats"]["source"]["title"]
-    if dead_stream_name == current_stream_name:
+    try:
+        current_stream_name = status["icestats"]["source"]["title"]
+        if dead_stream_name == current_stream_name:
+            return False
+    except:
+        # server is broken
         return False
     return True
