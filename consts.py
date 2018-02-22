@@ -16,4 +16,4 @@ bot_token = "data/phystechbot.token"
 stream_status_url = "http://radio.mipt.ru:8410/status-json.xsl"
 
 # strings
-dead_stream_name = "Radiologic - Broadcast"
+dead_stream_names = ["Radiologic - Broadcast", "Физтех.Радио - Эфир 24/7"]
