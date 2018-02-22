@@ -17,7 +17,7 @@ def check_stream():
 
     try:
         current_stream_name = status["icestats"]["source"]["title"]
-        if dead_stream_name == current_stream_name:
+        if current_stream_name in dead_stream_names:
             return False
     except:
         # server is broken
