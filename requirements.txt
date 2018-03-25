@@ -1,0 +1,2 @@
+requests==2.18.4
+telegram==0.0.1
