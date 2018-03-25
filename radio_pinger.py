@@ -8,7 +8,7 @@ import telegram
 from consts import *
 from stream_status import check_stream
 
-SLEEP_SECONDS = 60
+SLEEP_SECONDS = 60 * 5
 
 
 def reply_sticker(sticker_id):
