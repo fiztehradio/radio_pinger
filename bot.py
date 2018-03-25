@@ -16,10 +16,13 @@ def reply_text(text):
 def reply_broken_radio():
     actions = [
         lambda: reply_text("Походу, радио сдохло! Проверьте: http://radio.mipt.ru"),
-        lambda: reply_text("@mierokhin, радио кажись сделало сибастиена из эфира! Разберись с этим, boi: http://radio.mipt.ru"),
+        lambda: reply_text("@mierokhin, радио кажись сделало сибастиена из эфира! Разберись с этим: http://radio.mipt.ru"),
+        lambda: reply_text("@Exferro, радио из дэд. Разберись с этим: http://radio.mipt.ru"),
+        lambda: reply_text("@ivanpotylitcyn, радио из дэад. Разберись с этим: http://radio.mipt.ru"),
         lambda: reply_sticker(broken_radio_sticker1),
         lambda: (reply_text("не работает http://radio.mipt.ru"), reply_sticker(broken_radio_sticker2)),
-        lambda: (reply_text("радео ни работает"), reply_sticker(broken_radio_sticker3))
+        lambda: (reply_text("радио не работает"), reply_sticker(broken_radio_sticker3)),
+        lambda: (reply_text("радио не работает :С :С :С"), reply_sticker(broken_radio_sticker2))
     ]
     random.choice(actions)()
 
